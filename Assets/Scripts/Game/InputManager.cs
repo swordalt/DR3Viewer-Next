@@ -222,6 +222,33 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
+    public int GetPressedCount(float left, float right)
+    {
+        int count = 0;
+        for (int i = 0; i < TOUCH_MAX; i++)
+        {
+            if (touchPoint[i].isTouch)
+            {
+                if (touchPoint[i].posx > left - 1 && touchPoint[i].posx < right + 1)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public bool GetMultiFingerTrigger(float left, float right, int requiredFingers, float time = 0.0f)
+    {
+        if (GetPressedCount(left, right) < requiredFingers)
+        {
+            return false;
+        }
+
+        return GetTrigger(left, right, time);
+    }
+
 
 
     //離す瞬間取得

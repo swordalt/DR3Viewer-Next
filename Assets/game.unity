@@ -6710,17 +6710,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cfe244966449a4f9f2ae8f32071255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SongKeyword: bluemelody
-  SongHard: 8
-  SongTitle: Blue Melody
-  SongArtist: "\u6CE2\u5C0ELucario"
-  NoteSpeed: 12
+  SongKeyword: e
+  SongHard: 21
+  SongTitle: e
+  SongArtist: x
+  NoteSpeed: 16
   NoteOffset: 0
   GameAuto: 1
   GameMirror: 0
-  GameEffectGaterLevel: 8
-  GameEffectParamEQLevel: 8
-  GameEffectTap: 6
+  GameEffectGaterLevel: 0
+  GameEffectParamEQLevel: 0
+  GameEffectTap: 5
   PlayerComboDisp: 1
   hp: 100
   hpmax: 100
@@ -6762,9 +6762,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 52deff7cd350d1044bb780f7574639fe, type: 3}
   - {fileID: 21300000, guid: 67e3800a7646e7e48b06f72685c219e4, type: 3}
   - {fileID: 21300000, guid: 52191c3edb9ffe042a87af8963b13c3a, type: 3}
-  - {fileID: 21300000, guid: 52191c3edb9ffe042a87af8963b13c3a, type: 3}
-  - {fileID: 21300000, guid: 52191c3edb9ffe042a87af8963b13c3a, type: 3}
-  - {fileID: 21300000, guid: 52191c3edb9ffe042a87af8963b13c3a, type: 3}
+  - {fileID: 21300000, guid: 696e8eadf76c4c5b92b16e6d48d13723, type: 3}
+  - {fileID: 21300000, guid: 429b4f039c1746e6aec4cbf18c838001, type: 3}
+  - {fileID: 21300000, guid: d8a23c2e429848c897a85fe1b03c6e82, type: 3}
   SpriteArror:
   - {fileID: 21300000, guid: a6c1436c920081a4082cc9099d42d29c, type: 3}
   - {fileID: 21300000, guid: 3f79bc6cde266b44eab299db196aee9e, type: 3}
@@ -6773,6 +6773,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 608ede214835ac749b6d907cd33170db, type: 3}
   - {fileID: 21300000, guid: 4a8296ebb13c9654089808433e700fa9, type: 3}
   - {fileID: 21300000, guid: 3e92ebc570e45c7448152b56e0717760, type: 3}
+  - {fileID: 21300000, guid: 8578305a2152417abfb47572923535e0, type: 3}
+  - {fileID: 21300000, guid: 5c545c02f4a44806bff1cb771ad4ffaa, type: 3}
+  - {fileID: 21300000, guid: 7843009fd3624ec091a9d35385e7786c, type: 3}
   prefabEffect:
   - {fileID: 1310281885280906, guid: 8a11d5a8d1da39d4b993f15b5d613d88, type: 3}
   - {fileID: 1310281885280906, guid: 8a11d5a8d1da39d4b993f15b5d613d88, type: 3}

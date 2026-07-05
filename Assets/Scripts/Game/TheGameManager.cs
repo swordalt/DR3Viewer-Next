@@ -1016,6 +1016,9 @@ public class TheGameManager : MonoBehaviour
     {
         if (k == 1) return true;
         if (k == 2) return true;
+        if (k == 25) return true;
+        if (k == 26) return true;
+        if (k == 27) return true;
         if (k == 3) return true;
         if (k == 4) return true;
         if (k == 5) return true;
@@ -1032,6 +1035,9 @@ public class TheGameManager : MonoBehaviour
     {
         if (k == 1) return true;
         if (k == 2) return true;
+        if (k == 25) return true;
+        if (k == 26) return true;
+        if (k == 27) return true;
 
         return false;
     }

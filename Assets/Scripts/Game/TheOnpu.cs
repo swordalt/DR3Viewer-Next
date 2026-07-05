@@ -155,6 +155,27 @@ public class TheOnpu : MonoBehaviour
             arrorRenderer.transform.localScale += new Vector3(2,2, 0);
             arrorRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
+        else if (onpuData.kind == 25)
+        {
+            arrorRenderer.sprite = gameManager.GetSpriteArror(7);
+            arrorRenderer.transform.position += new Vector3(0, 0.6f, 0);
+            arrorRenderer.transform.localScale += new Vector3(2, 2, 0);
+            arrorRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+        else if (onpuData.kind == 26)
+        {
+            arrorRenderer.sprite = gameManager.GetSpriteArror(8);
+            arrorRenderer.transform.position += new Vector3(0, 0.6f, 0);
+            arrorRenderer.transform.localScale += new Vector3(2, 2, 0);
+            arrorRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+        else if (onpuData.kind == 27)
+        {
+            arrorRenderer.sprite = gameManager.GetSpriteArror(9);
+            arrorRenderer.transform.position += new Vector3(0, 0.6f, 0);
+            arrorRenderer.transform.localScale += new Vector3(2, 2, 0);
+            arrorRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
         else if (onpuData.kind == 13)
         {
             arrorRenderer.sprite = gameManager.GetSpriteArror(2);
@@ -498,7 +519,10 @@ public class TheOnpu : MonoBehaviour
                     caseend:
                         break;
                     case 2:
-                        if (inputManager.GetTrigger(onpuData.pos, onpuData.pos + onpuData.width))
+                    case 25:
+                    case 26:
+                    case 27:
+                        if (inputManager.GetMultiFingerTrigger(onpuData.pos, onpuData.pos + onpuData.width, RequiredFingerCount(onpuData.kind)))
                         {
                             gameManager.PANDING(0, onpuData.kind, new Vector3(transform.position.x, 0.0f, 0.0f), onpuData.width, onpuData.kind);
                             inputManager.SetBeamColor(onpuData.pos, onpuData.pos + onpuData.width, PJColor);
@@ -641,7 +665,7 @@ public class TheOnpu : MonoBehaviour
         float randomms = Random.Range(-gameManager.PJms * 0.9f, gameManager.PJms * 0.9f);
         //if (onpuData.kind == 1) global.AccMSList.Add(100.0f - Mathf.Abs(randomms));
         gameManager.PANDING(onpuData.kind != 1 ? 0 : randomms, onpuData.kind, new Vector3(transform.position.x, 0.0f, 0.0f), onpuData.width, onpuData.kind);
-        if (onpuData.kind == 1 || onpuData.kind == 2)
+        if (onpuData.kind == 1 || onpuData.kind == 2 || onpuData.kind == 25 || onpuData.kind == 26 || onpuData.kind == 27)
         {
             inputManager.SetBeamColor(onpuData.pos, onpuData.pos + onpuData.width, PJColor);
         }
@@ -654,5 +678,13 @@ public class TheOnpu : MonoBehaviour
     {
         gameManager = gm;
         inputManager = im;
+    }
+
+    int RequiredFingerCount(int kind)
+    {
+        if (kind == 25) return 2;
+        if (kind == 26) return 3;
+        if (kind == 27) return 4;
+        return 1;
     }
 }
