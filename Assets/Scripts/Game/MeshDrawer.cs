@@ -11,20 +11,43 @@ public class MeshDrawer : MonoBehaviour {
         Que = new List<DRAWMESH>();
     }
 
+    void OnEnable()
+    {
+        Camera.onPostRender += DrawQueuedMeshes;
+    }
+
+    void OnDisable()
+    {
+        Camera.onPostRender -= DrawQueuedMeshes;
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
         Que.Clear();
 	}
 
-    void OnRenderObject()
+    void DrawQueuedMeshes(Camera camera)
     {
-		if(Que.Count>0)
+        if (Que == null || Que.Count <= 0)
         {
-            foreach(DRAWMESH dm in Que)
+            return;
+        }
+
+        if ((camera.cullingMask & (1 << gameObject.layer)) == 0)
+        {
+            return;
+        }
+
+        foreach(DRAWMESH dm in Que)
+        {
+            if (dm.mesh == null || dm.material == null)
             {
-                Graphics.DrawMesh(dm.mesh, Vector3.zero, Quaternion.identity, dm.material, 9, Camera.current);
+                continue;
             }
+
+            dm.material.SetPass(0);
+            Graphics.DrawMeshNow(dm.mesh, Vector3.zero, Quaternion.identity);
         }
     }
 
