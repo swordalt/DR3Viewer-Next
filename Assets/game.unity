@@ -6712,8 +6712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SongKeyword: e
   SongHard: 21
-  SongTitle: e
-  SongArtist: x
+  SongTitle: Eviternity
+  SongArtist: Xyris
   NoteSpeed: 16
   NoteOffset: 0
   GameAuto: 1
