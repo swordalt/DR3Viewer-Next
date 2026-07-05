@@ -646,8 +646,12 @@ public class TheGameManager : MonoBehaviour
             else
             {
                 //Notesデータ取得
-                string ss = s[i].Replace("<", "");
-                string[] sss = ss.Substring(0, ss.Length - 2).Split('>');
+                string[] sss = GetNoteFields(s[i]);
+                if (sss.Length < 7)
+                {
+                    Debug.LogError("Invalid note line: " + s[i]);
+                    continue;
+                }
                 TheOnpu.OnpuData onpu = new TheOnpu.OnpuData();
                 onpu.id = int.Parse(sss[0]);
                 onpu.kind = int.Parse(sss[1]);
@@ -660,7 +664,15 @@ public class TheGameManager : MonoBehaviour
                 onpu.isnadnsc = sss[5].Contains(":");
                 if (!onpu.isnadnsc) onpu.insc = float.Parse(sss[5]);
                 onpu.insc = onpu.insc == 0.0f ? 1.0f : onpu.insc;
-                onpu.parent = int.Parse(sss[6]);
+                string parentText = sss.Length > 6 ? sss[6].Trim() : "";
+                if (!int.TryParse(parentText, out onpu.parent))
+                {
+                    if (isTail(onpu.kind))
+                    {
+                        Debug.LogError("Invalid parent id '" + parentText + "' for tail note " + onpu.id + ". Using 0 so chart loading can continue.");
+                    }
+                    onpu.parent = 0;
+                }
                 if (sss.Length > 7)
                 {
                     onpu.mode = sss[7];
@@ -688,6 +700,25 @@ public class TheGameManager : MonoBehaviour
             }
         }
 
+    }
+
+    string[] GetNoteFields(string line)
+    {
+        List<string> fields = new List<string>();
+        int fieldStart = -1;
+        for (int i = 0; i < line.Length; i++)
+        {
+            if (line[i] == '<')
+            {
+                fieldStart = i + 1;
+            }
+            else if (line[i] == '>' && fieldStart >= 0)
+            {
+                fields.Add(line.Substring(fieldStart, i - fieldStart).Trim());
+                fieldStart = -1;
+            }
+        }
+        return fields.ToArray();
     }
 
     // Update is called once per frame
