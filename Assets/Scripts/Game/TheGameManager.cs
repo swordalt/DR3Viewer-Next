@@ -830,7 +830,10 @@ public class TheGameManager : MonoBehaviour
                     if (CurrentSC != drbfile.scns[i].sc)
                     {
                         CurrentSC = drbfile.scns[i].sc;
-                        animSC.SetFloat("CurrentSC", CurrentSC);
+                        if (CanUpdateAnimator(animSC))
+                        {
+                            animSC.SetFloat("CurrentSC", CurrentSC);
+                        }
                     }
                     CurrentSCn = i;
                 }
@@ -1309,6 +1312,11 @@ public class TheGameManager : MonoBehaviour
     public void AddAng(float f)
     {
         AngList.Add(f);
+    }
+
+    bool CanUpdateAnimator(Animator animator)
+    {
+        return animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null;
     }
 
     public void HPMaskOut()
